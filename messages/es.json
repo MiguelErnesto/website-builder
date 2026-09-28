@@ -1,0 +1,133 @@
+{
+  "siteFallback": "Estudio",
+  "metaDescription": "Promoción de productos, servicios, oficios y cursos. Oferta clara, prueba social y un siguiente paso.",
+  "heroFallback": "Lo que hacemos, con claridad.",
+  "heroEm": "claridad",
+  "heroLead": "Convierte tu idea en una oferta que se entiende: producto, servicio, oficio o curso.",
+  "eyebrow": "Promoción",
+  "ctaFallback": "Ver la oferta",
+  "search": "Buscar",
+  "searchPlaceholder": "Buscar oferta, servicio o curso…",
+  "searchEmpty": "Nada coincide con esa búsqueda.",
+  "searchResults": "Resultados",
+  "navCta": "Contáctenos",
+  "offer": "Oferta",
+  "offerLead": "Lo más destacado. Abre una ficha para el detalle.",
+  "featured": "Destacados",
+  "featuredTag": "Destacado",
+  "seeAllFeatured": "Ver destacados",
+  "promo": "Promoción",
+  "promoTag": "Oferta",
+  "seePromo": "Ver en promoción",
+  "prev": "Anterior",
+  "next": "Siguiente",
+  "seeAll": "Ver todos",
+  "allOffers": "Toda la oferta",
+  "more": "Ver más",
+  "empty": "Aún no hay propuestas publicadas.",
+  "back": "Volver a la oferta",
+  "price": "Precio",
+  "notFound": "No encontrado",
+  "home": "Inicio",
+  "skip": "Saltar al contenido",
+  "itemImage": "Imagen",
+  "menu": "Abrir menú",
+  "closeMenu": "Cerrar menú",
+  "lang": "Idioma",
+  "value": "Propuesta",
+  "valueTitle": "Por qué quedarte",
+  "trust": "Confianza",
+  "testimonialsTitle": "Quién ya dio el paso",
+  "casesTitle": "Casos y resultados",
+  "about": "Nosotros",
+  "aboutTitle": "Quiénes estamos detrás",
+  "aboutText": "Somos un estudio que publica ofertas con claridad: productos, servicios, manualidades o cursos. Contamos qué hacemos, cómo se encarga y qué recibe quien confía en el trabajo. El texto de esta sección se edita en el panel y ayuda a que se nos encuentre por lo que realmente ofrecemos.",
+  "faq": "FAQ",
+  "faqTitle": "Preguntas frecuentes",
+  "ctaTitle": "¿Listo para el siguiente paso?",
+  "ctaText": "Cuéntanos qué necesitas. Respondemos con plazos, alcance y un siguiente movimiento claro.",
+  "ctaButton": "Escribir ahora",
+  "contact": "Contacto",
+  "legal": "Legal",
+  "privacy": "Privacidad",
+  "privacyLead": "Tratamos los datos que nos envías (nombre, email y mensaje) solo para responder tu consulta. No los vendemos. Puedes pedir acceso o borrado escribiendo al email de contacto.",
+  "notice": "Aviso legal",
+  "noticeLead": "Este sitio muestra una oferta informativa. Los encargos se confirman por escrito. Los precios visibles pueden cambiar y no constituyen un contrato hasta la aceptación mutua.",
+  "sitemap": "Mapa del sitio",
+  "social": "Redes",
+  "kinds": {
+    "product": "Producto",
+    "service": "Servicio",
+    "good": "Bien",
+    "craft": "Manualidad",
+    "course": "Curso",
+    "other": "Otro"
+  },
+  "benefits": [
+    {
+      "title": "Claridad",
+      "text": "Sabes qué se ofrece, en qué plazo y a qué precio antes de decidir."
+    },
+    {
+      "title": "Cercanía",
+      "text": "Trato directo: una conversación, no un formulario opaco."
+    },
+    {
+      "title": "Oficio",
+      "text": "Cuidado en cada entrega, sea un objeto, un servicio o un curso."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Entendí la oferta en un minuto y el encargo salió como lo hablamos.",
+      "name": "Ana Ruiz",
+      "role": "Cliente"
+    },
+    {
+      "quote": "Plazos reales y un proceso simple. Volvería a contratar.",
+      "name": "Luis Mora",
+      "role": "Emprendimiento"
+    },
+    {
+      "quote": "La ficha y las preguntas cubrieron las dudas que iba a escribir.",
+      "name": "Marta Gil",
+      "role": "Alumna"
+    }
+  ],
+  "cases": [
+    {
+      "title": "Encargo a medida",
+      "text": "De una idea suelta a una entrega concreta, con alcance cerrado."
+    },
+    {
+      "title": "Lanzamiento de oferta",
+      "text": "Un catálogo reducido: lo destacado primero, el resto a un clic."
+    },
+    {
+      "title": "Primera edición de un curso",
+      "text": "Temario claro, fechas visibles y un canal de dudas."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cómo se hace un encargo?",
+      "answer": "Elige un ítem o escribe. Confirmamos alcance, plazo y precio por escrito."
+    },
+    {
+      "question": "¿Los precios son fijos?",
+      "answer": "Si hay precio en la ficha, es la referencia. Encargos a medida se cotizan."
+    },
+    {
+      "question": "¿Cuánto tarda una entrega?",
+      "answer": "Depende del tipo de oferta. Lo dejamos por escrito antes de empezar."
+    },
+    {
+      "question": "¿Puedo pedir cambios?",
+      "answer": "Sí, dentro del alcance acordado. Fuera de eso, se revisa el plazo o el precio."
+    },
+    {
+      "question": "¿Cómo contacto?",
+      "answer": "Usa Contáctenos o el email del pie. Respondemos en horario laboral."
+    }
+  ]
+}

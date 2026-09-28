@@ -1,0 +1,56 @@
+/** Fotos reales (Unsplash) por slug. Se bajan en el primer seed. */
+export const SEED_PHOTOS: Record<string, string> = {
+  'lampara-mesa-aura':
+    'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&h=700&q=80',
+  'silla-nido':
+    'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=900&h=700&q=80',
+  'mesa-baja-block':
+    'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=900&h=700&q=80',
+  'jarron-arcilla':
+    'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=900&h=700&q=80',
+  'alfombra-grid':
+    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&h=700&q=80',
+  'reloj-muro':
+    'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=900&h=700&q=80',
+  'estanteria-cubo':
+    'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&h=700&q=80',
+  'cojin-offset':
+    'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&h=700&q=80',
+  'tetera-linea':
+    'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&h=700&q=80',
+  'cuaderno-figtree':
+    'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&h=700&q=80',
+  'bolso-tote-stone':
+    'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&h=700&q=80',
+  'lampara-pie-column':
+    'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&h=700&q=80',
+  'espejo-frame':
+    'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&h=700&q=80',
+  'maceta-brutal':
+    'https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&h=700&q=80',
+  'manta-lana':
+    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&h=700&q=80',
+  'candelabro-duo':
+    'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&h=700&q=80',
+  'escritorio-plano':
+    'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=900&h=700&q=80',
+  'taburete-alto':
+    'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&h=700&q=80',
+  'bandeja-roble':
+    'https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=900&h=700&q=80',
+  'perchero-rail':
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&h=700&q=80',
+  'lampara-pared-cut':
+    'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?auto=format&fit=crop&w=900&h=700&q=80',
+  'vasos-prism':
+    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&h=700&q=80',
+  'reloj-mesa-tick':
+    'https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=900&h=700&q=80',
+  'organizador-desk':
+    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=900&h=700&q=80',
+  'banco-hall':
+    'https://images.unsplash.com/photo-1550226891-ef816aed4a98?auto=format&fit=crop&w=900&h=700&q=80',
+}
+
+export const SEED_PHOTO_FALLBACK =
+  'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&h=700&q=80'

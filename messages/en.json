@@ -1,0 +1,133 @@
+{
+  "siteFallback": "Studio",
+  "metaDescription": "Promote products, services, crafts or courses. A clear offer, social proof, and a next step.",
+  "heroFallback": "What we do, shown clearly.",
+  "heroEm": "clearly",
+  "heroLead": "Turn an idea into an offer people get: a product, a service, a craft, or a course.",
+  "eyebrow": "Promotion",
+  "ctaFallback": "See the offer",
+  "search": "Search",
+  "searchPlaceholder": "Search an offer, service or course…",
+  "searchEmpty": "Nothing matches that search.",
+  "searchResults": "Results",
+  "navCta": "Contact us",
+  "offer": "Offerings",
+  "offerLead": "The highlights. Open a page for the details.",
+  "featured": "Featured",
+  "featuredTag": "Featured",
+  "seeAllFeatured": "See featured",
+  "promo": "Sale",
+  "promoTag": "Sale",
+  "seePromo": "See on sale",
+  "prev": "Previous",
+  "next": "Next",
+  "seeAll": "See all",
+  "allOffers": "Full offer",
+  "more": "See more",
+  "empty": "Nothing published yet.",
+  "back": "Back to offerings",
+  "price": "Price",
+  "notFound": "Not found",
+  "home": "Home",
+  "skip": "Skip to content",
+  "itemImage": "Image",
+  "menu": "Open menu",
+  "closeMenu": "Close menu",
+  "lang": "Language",
+  "value": "Value",
+  "valueTitle": "Why stay",
+  "trust": "Trust",
+  "testimonialsTitle": "Who already took the step",
+  "casesTitle": "Cases and results",
+  "about": "About",
+  "aboutTitle": "Who is behind this",
+  "aboutText": "We are a studio that publishes a clear offer: products, services, crafts or courses. We say what we do, how to book it, and what you get. This section is editable in the admin and helps people find us for what we actually provide.",
+  "faq": "FAQ",
+  "faqTitle": "Common questions",
+  "ctaTitle": "Ready for the next step?",
+  "ctaText": "Tell us what you need. We reply with timing, scope, and a clear next move.",
+  "ctaButton": "Write now",
+  "contact": "Contact",
+  "legal": "Legal",
+  "privacy": "Privacy",
+  "privacyLead": "We use the data you send (name, email, message) only to reply. We do not sell it. You can ask for access or deletion via the contact email.",
+  "notice": "Legal notice",
+  "noticeLead": "This site shows an informational offer. Work is confirmed in writing. Visible prices can change and are not a contract until both sides agree.",
+  "sitemap": "Sitemap",
+  "social": "Social",
+  "kinds": {
+    "product": "Product",
+    "service": "Service",
+    "good": "Good",
+    "craft": "Craft",
+    "course": "Course",
+    "other": "Other"
+  },
+  "benefits": [
+    {
+      "title": "Clarity",
+      "text": "You know what is offered, when, and at what price before you decide."
+    },
+    {
+      "title": "Closeness",
+      "text": "Direct contact: a conversation, not a sealed form."
+    },
+    {
+      "title": "Craft",
+      "text": "Care in every delivery, whether it is an object, a service, or a course."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "I understood the offer in a minute and the work matched what we agreed.",
+      "name": "Ana Ruiz",
+      "role": "Client"
+    },
+    {
+      "quote": "Honest timing and a simple process. I would book again.",
+      "name": "Luis Mora",
+      "role": "Small business"
+    },
+    {
+      "quote": "The page and the FAQ covered the questions I was about to send.",
+      "name": "Marta Gil",
+      "role": "Student"
+    }
+  ],
+  "cases": [
+    {
+      "title": "A custom brief",
+      "text": "From a loose idea to a concrete delivery, with a closed scope."
+    },
+    {
+      "title": "A tighter offer",
+      "text": "A short list first: highlights up front, the rest one click away."
+    },
+    {
+      "title": "A first course run",
+      "text": "A clear outline, visible dates, and a channel for questions."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I book?",
+      "answer": "Pick an item or write. We confirm scope, timing, and price in writing."
+    },
+    {
+      "question": "Are prices fixed?",
+      "answer": "If a page shows a price, that is the reference. Custom work is quoted."
+    },
+    {
+      "question": "How long does delivery take?",
+      "answer": "It depends on the offer. We write it down before we start."
+    },
+    {
+      "question": "Can I request changes?",
+      "answer": "Yes, inside the agreed scope. Beyond that, we review time or price."
+    },
+    {
+      "question": "How do I get in touch?",
+      "answer": "Use Contact us or the footer email. We reply on business days."
+    }
+  ]
+}

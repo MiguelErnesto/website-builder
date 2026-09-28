@@ -1,0 +1,9 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "npx payload migrate && npx next start --hostname 0.0.0.0 --port $PORT"
+healthcheckPath = "/es"
+healthcheckTimeout = 100
+restartPolicyType = "ON_FAILURE"

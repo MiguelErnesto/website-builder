@@ -1,0 +1,6 @@
+ALTER TABLE site ADD COLUMN IF NOT EXISTS twitter varchar;
+ALTER TABLE site ADD COLUMN IF NOT EXISTS youtube varchar;
+ALTER TABLE site ADD COLUMN IF NOT EXISTS tiktok varchar;
+ALTER TABLE site ADD COLUMN IF NOT EXISTS linkedin varchar;
+ALTER TABLE site ADD COLUMN IF NOT EXISTS whatsapp varchar;
+ALTER TABLE site ADD COLUMN IF NOT EXISTS pinterest varchar;

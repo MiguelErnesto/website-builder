@@ -1,0 +1,7 @@
+FROM planificador-eventos_app:latest
+
+WORKDIR /app
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

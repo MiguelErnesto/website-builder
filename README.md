@@ -15,7 +15,7 @@ Imágenes Docker que ya deben estar en el equipo (no se descargan):
 - `postgres:16-alpine`
 - `planificador-eventos_app:latest` (base Node 22; sale de [planificador-eventos](https://github.com/MiguelErnesto/planificador-eventos) si ya lo construiste)
 
-El puerto **5432** del host lo usa el planificador. Este proyecto publica Postgres en **5433**.
+El puerto **5432** del host lo usa el planificador. Este proyecto publica Postgres en **5434**.
 
 ## Instalar y ejecutar
 
@@ -85,6 +85,6 @@ El siguiente `docker compose up --build` volverá a sembrar admin y catálogo.
 
 ## Notas
 
-- Host Postgres: `localhost:5433` (usuario / clave / base: `catalogo`).
-- La app en Compose usa `postgres:5432` dentro de la red Docker, no el 5433 del host.
+- Host Postgres: `localhost:5434` (usuario / clave / base: `catalogo`).
+- La app en Compose usa `postgres:5432` dentro de la red Docker, no el 5434 del host.
 - Node en el PC no hace falta; `npm install` lo ejecuta el entrypoint del contenedor.

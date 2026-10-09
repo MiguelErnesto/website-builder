@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { notFound } from 'next/navigation'
+import { connection } from 'next/server'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -11,10 +12,8 @@ import type { Locale } from '@/lib/i18n'
 import '@/app/globals.css'
 
 export const dynamic = 'force-dynamic'
-
-export function generateStaticParams() {
-  return [{ locale: 'es' }, { locale: 'en' }]
-}
+export const revalidate = 0
+export const fetchCache = 'force-no-store'
 
 type LayoutProps = {
   children: ReactNode
@@ -41,6 +40,7 @@ export async function generateMetadata({ params }: Pick<LayoutProps, 'params'>) 
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
+  await connection()
   const { locale: raw } = await params
   if (!isLocale(raw)) notFound()
   const locale: Locale = raw
@@ -78,6 +78,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           ctaHref={ctaHref}
           showNavCta={brand.show.navCta}
           showLangSwitch={brand.show.langSwitch}
+          showSearch={brand.show.search}
+          searchPlaceholder={brand.searchPlaceholder}
         />
         {children}
         <Footer

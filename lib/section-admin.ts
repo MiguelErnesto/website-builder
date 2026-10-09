@@ -2,7 +2,7 @@ import { PAGE_BLOCKS } from '@/globals/section-blocks'
 import { mediaThumb } from '@/lib/media'
 
 export const SECTION_TYPE_LABEL: Record<string, { es: string; en: string }> = {
-  hero: { es: 'Hero', en: 'Hero' },
+  hero: { es: 'Principal', en: 'Main' },
   carousel: { es: 'Carrusel', en: 'Carousel' },
   about: { es: 'Nosotros', en: 'About' },
   faq: { es: 'FAQ', en: 'FAQ' },
@@ -57,6 +57,7 @@ export function serializeSection(block: Record<string, unknown>) {
       const rec = { ...(row as Record<string, unknown>) }
       if ('image' in rec) rec.image = toRelId(rec.image)
       if ('buttonPage' in rec) rec.buttonPage = toRelId(rec.buttonPage)
+      if ('ctaPage' in rec) rec.ctaPage = toRelId(rec.ctaPage)
       return rec
     })
   }

@@ -48,6 +48,7 @@ export type SiteFields = {
   showNav?: boolean | null
   showNavCta?: boolean | null
   showLangSwitch?: boolean | null
+  searchPlaceholder?: string | null
   navItems?: unknown
   sections?: unknown
   heroTitle?: string | null
@@ -117,6 +118,7 @@ export function siteCopy(locale: Locale, site: SiteFields) {
     logoUrl: mediaUrl(site?.logo) || DEFAULT_LOGO_SRC,
     metaDescription: pick(site?.metaDescription, t.metaDescription),
     navCta: pick(site?.navCta, t.navCta, STALE_NAV_CTA),
+    searchPlaceholder: pick(site?.searchPlaceholder, t.searchPlaceholder),
     email: pick(site?.contactEmail, ''),
     instagram: pick(site?.instagram, ''),
     facebook: pick(site?.facebook, ''),
@@ -142,6 +144,7 @@ export function siteCopy(locale: Locale, site: SiteFields) {
       nav: flag(site?.showNav),
       navCta: flag(site?.showNavCta),
       langSwitch: flag(site?.showLangSwitch),
+      search: flag(site?.showHeroSearch),
     },
   }
 }

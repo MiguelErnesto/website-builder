@@ -479,6 +479,8 @@ export interface Site {
   showNav?: boolean | null;
   showNavCta?: boolean | null;
   showLangSwitch?: boolean | null;
+  showHeroSearch?: boolean | null;
+  searchPlaceholder?: string | null;
   navCta?: string | null;
   /**
    * If empty, the default menu is used. href: /en#faq or /en/nosotros.
@@ -492,7 +494,7 @@ export interface Site {
       }[]
     | null;
   /**
-   * Hero, About, FAQ and Contact us are included by default. Reorder, hide or add sections.
+   * Main, About, FAQ and Contact us are included by default. Reorder, hide or add sections.
    */
   sections?:
     | (
@@ -511,16 +513,37 @@ export interface Site {
              */
             ctaHref?: string | null;
             searchPlaceholder?: string | null;
+            slideTransition?: ('fade' | 'slide' | 'slide-left' | 'rise' | 'zoom' | 'none') | null;
             slides?:
               | {
+                  visible?: boolean | null;
                   image?: (number | null) | Media;
+                  showImage?: boolean | null;
+                  title?: string | null;
+                  titleAlign?: ('left' | 'center' | 'right') | null;
+                  titleAlignY?: ('top' | 'center' | 'bottom') | null;
+                  titleSize?: ('sm' | 'md' | 'lg' | 'xl') | null;
+                  titleColor?: string | null;
+                  showTitle?: boolean | null;
                   text?: string | null;
-                  textX?: ('left' | 'center' | 'right') | null;
-                  textY?: ('top' | 'center' | 'bottom') | null;
+                  textAlign?: ('left' | 'center' | 'right') | null;
+                  textAlignY?: ('top' | 'center' | 'bottom') | null;
+                  textSize?: ('sm' | 'md' | 'lg' | 'xl') | null;
+                  textColor?: string | null;
+                  showText?: boolean | null;
+                  showCta?: boolean | null;
+                  cta?: string | null;
+                  ctaPage?: (number | null) | Page;
+                  ctaAlign?: ('left' | 'center' | 'right') | null;
+                  ctaAlignY?: ('top' | 'center' | 'bottom') | null;
+                  ctaSize?: ('sm' | 'md' | 'lg' | 'xl') | null;
+                  ctaColor?: string | null;
                   id?: string | null;
                 }[]
               | null;
-            image?: (number | null) | Media;
+            slideDuration?: number | null;
+            showSlideNav?: boolean | null;
+            showInMenu?: boolean | null;
             visible?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -589,7 +612,6 @@ export interface Site {
             title?: string | null;
             showTitle?: boolean | null;
             showInMenu?: boolean | null;
-            visible?: boolean | null;
             layout: 'media' | 'cards';
             cardsPerRow?: number | null;
             image?: (number | null) | Media;
@@ -606,15 +628,18 @@ export interface Site {
               | {
                   visible?: boolean | null;
                   image?: (number | null) | Media;
+                  imageShape?: ('square' | 'oval' | 'circle' | 'portrait' | 'landscape') | null;
                   imageAlign?: ('left' | 'center' | 'right') | null;
                   imageAlignY?: ('top' | 'center' | 'bottom') | null;
                   showImage?: boolean | null;
                   subtitle?: string | null;
+                  subtitleAlign?: ('left' | 'center' | 'right') | null;
                   showSubtitle?: boolean | null;
                   text?: string | null;
-                  textAlign?: ('left' | 'center' | 'right') | null;
+                  textAlign?: ('left' | 'center' | 'justify' | 'right') | null;
                   showText?: boolean | null;
                   footer?: string | null;
+                  footerAlign?: ('left' | 'center' | 'right') | null;
                   showFooter?: boolean | null;
                   buttonLabel?: string | null;
                   buttonPage?: (number | null) | Page;
@@ -661,6 +686,8 @@ export interface SiteSelect<T extends boolean = true> {
   showNav?: T;
   showNavCta?: T;
   showLangSwitch?: T;
+  showHeroSearch?: T;
+  searchPlaceholder?: T;
   navCta?: T;
   navItems?:
     | T
@@ -687,16 +714,37 @@ export interface SiteSelect<T extends boolean = true> {
               ctaPage?: T;
               ctaHref?: T;
               searchPlaceholder?: T;
+              slideTransition?: T;
               slides?:
                 | T
                 | {
+                    visible?: T;
                     image?: T;
+                    showImage?: T;
+                    title?: T;
+                    titleAlign?: T;
+                    titleAlignY?: T;
+                    titleSize?: T;
+                    titleColor?: T;
+                    showTitle?: T;
                     text?: T;
-                    textX?: T;
-                    textY?: T;
+                    textAlign?: T;
+                    textAlignY?: T;
+                    textSize?: T;
+                    textColor?: T;
+                    showText?: T;
+                    showCta?: T;
+                    cta?: T;
+                    ctaPage?: T;
+                    ctaAlign?: T;
+                    ctaAlignY?: T;
+                    ctaSize?: T;
+                    ctaColor?: T;
                     id?: T;
                   };
-              image?: T;
+              slideDuration?: T;
+              showSlideNav?: T;
+              showInMenu?: T;
               visible?: T;
               id?: T;
               blockName?: T;
@@ -770,7 +818,6 @@ export interface SiteSelect<T extends boolean = true> {
               title?: T;
               showTitle?: T;
               showInMenu?: T;
-              visible?: T;
               layout?: T;
               cardsPerRow?: T;
               image?: T;
@@ -788,15 +835,18 @@ export interface SiteSelect<T extends boolean = true> {
                 | {
                     visible?: T;
                     image?: T;
+                    imageShape?: T;
                     imageAlign?: T;
                     imageAlignY?: T;
                     showImage?: T;
                     subtitle?: T;
+                    subtitleAlign?: T;
                     showSubtitle?: T;
                     text?: T;
                     textAlign?: T;
                     showText?: T;
                     footer?: T;
+                    footerAlign?: T;
                     showFooter?: T;
                     buttonLabel?: T;
                     buttonPage?: T;

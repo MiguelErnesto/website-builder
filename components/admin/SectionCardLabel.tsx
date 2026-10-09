@@ -5,7 +5,7 @@ import { formatAdminURL } from 'payload/shared'
 import { useEffect, useRef, useState } from 'react'
 
 import { mediaThumb } from '@/lib/media'
-import { sectionImage, sectionText, sectionTitle } from '@/lib/section-admin'
+import { sectionImage, sectionText, sectionTitle, sectionTypeLabel } from '@/lib/section-admin'
 
 type Row = {
   id?: string | number
@@ -94,8 +94,14 @@ export function SectionCardLabel() {
 
   if (!data) return null
 
-  const title = sectionTitle(data as Record<string, unknown>, en)
-  const text = sectionText(data as Record<string, unknown>)
+  const rawTitle = typeof data.title === 'string' ? data.title.trim() : ''
+  const isHero =
+    type === 'hero' ||
+    rawTitle === 'Hero' ||
+    rawTitle === 'Lo que hacemos, con claridad.' ||
+    rawTitle === 'What we do, shown clearly.'
+  const title = isHero ? sectionTypeLabel('hero', en) : sectionTitle(data as Record<string, unknown>, en)
+  const text = isHero ? '' : sectionText(data as Record<string, unknown>)
   const image = type === 'carousel' ? carouselSrc : sectionImage(data as Record<string, unknown>)
 
   return (

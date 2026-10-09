@@ -5,6 +5,10 @@ cd /app
 
 echo "[entrypoint] Node $(node -v) — npm $(npm -v)"
 
-npm install
+if [ -f node_modules/.package-lock.json ] && [ -d node_modules/next ]; then
+  echo "[entrypoint] node_modules ya instalado, se omite npm install"
+else
+  npm install
+fi
 
 exec "$@"

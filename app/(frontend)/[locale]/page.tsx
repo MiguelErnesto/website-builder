@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { connection } from 'next/server'
 
 import { HomeSections } from '@/components/HomeSections'
 import { getPublishedProducts, getSite } from '@/lib/cms'
@@ -7,6 +8,8 @@ import { siteCopy } from '@/lib/site-copy'
 import type { Locale } from '@/lib/i18n'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
+export const fetchCache = 'force-no-store'
 
 type PageProps = {
   params: Promise<{ locale: string }>
@@ -26,6 +29,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function HomePage({ params }: PageProps) {
+  await connection()
   const { locale: raw } = await params
   if (!isLocale(raw)) notFound()
   const locale: Locale = raw

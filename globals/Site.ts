@@ -252,7 +252,7 @@ export const Site: GlobalConfig = {
                 {
                   name: 'fontSecondary',
                   type: 'select',
-                  label: L('Fuente secundaria (titulares)', 'Display font (headings)'),
+                  label: L('Fuente secundaria', 'Secondary font'),
                   defaultValue: 'open-sans',
                   options: FONT_SELECT_OPTIONS,
                   admin: {
@@ -271,6 +271,13 @@ export const Site: GlobalConfig = {
             show('showNav', L('Mostrar menú', 'Show menu')),
             show('showNavCta', L('Mostrar botón del menú', 'Show menu button')),
             show('showLangSwitch', L('Mostrar cambio de idioma', 'Show language switch')),
+            show('showHeroSearch', L('Mostrar buscador', 'Show search')),
+            {
+              name: 'searchPlaceholder',
+              type: 'text',
+              localized: true,
+              label: L('Placeholder del buscador', 'Search placeholder'),
+            },
             {
               name: 'navCta',
               type: 'text',
@@ -307,8 +314,8 @@ export const Site: GlobalConfig = {
                 initCollapsed: true,
                 className: 'sections-cards',
                 description: L(
-                  'Hero, Nosotros, FAQ y Contáctenos salen por defecto. Reordena, oculta o añade secciones.',
-                  'Hero, About, FAQ and Contact us are included by default. Reorder, hide or add sections.',
+                  'Principal, Nosotros, FAQ y Contáctenos salen por defecto. Reordena, oculta o añade secciones.',
+                  'Main, About, FAQ and Contact us are included by default. Reorder, hide or add sections.',
                 ),
                 components: {
                   beforeInput: [

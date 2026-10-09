@@ -57,11 +57,28 @@ function uniqueId(base: string, used: Map<string, number>) {
 export type FaqItem = { question: string; answer: string }
 
 export type HeroSlide = {
-  image: string
+  image: string | null
+  title: string
   text: string
-  textX: 'left' | 'center' | 'right'
-  textY: 'top' | 'center' | 'bottom'
+  titleAlign: 'left' | 'center' | 'right'
+  titleAlignY: 'top' | 'center' | 'bottom'
+  titleSize: 'sm' | 'md' | 'lg' | 'xl'
+  titleColor: string
+  textAlign: 'left' | 'center' | 'right' | 'justify'
+  textAlignY: 'top' | 'center' | 'bottom'
+  textSize: 'sm' | 'md' | 'lg' | 'xl'
+  textColor: string
+  cta: string
+  ctaHref: string
+  ctaAlign: 'left' | 'center' | 'right'
+  ctaAlignY: 'top' | 'center' | 'bottom'
+  ctaSize: 'sm' | 'md' | 'lg' | 'xl'
+  ctaColor: string
 }
+
+export type HeroTransition = 'fade' | 'slide' | 'slide-left' | 'rise' | 'zoom' | 'none'
+
+const HERO_TRANSITIONS: readonly HeroTransition[] = ['fade', 'slide', 'slide-left', 'rise', 'zoom', 'none']
 
 export type AboutCard = {
   image: string | null
@@ -74,12 +91,15 @@ export type ExtraCard = {
   showImage: boolean
   imageAlign: 'left' | 'center' | 'right'
   imageAlignY: 'top' | 'center' | 'bottom'
+  imageShape: 'square' | 'oval' | 'circle' | 'portrait' | 'landscape'
   subtitle: string
+  subtitleAlign: 'left' | 'center' | 'right'
   showSubtitle: boolean
   text: string
-  textAlign: 'left' | 'center' | 'right'
+  textAlign: 'left' | 'center' | 'right' | 'justify'
   showText: boolean
   footer: string
+  footerAlign: 'left' | 'center' | 'right'
   showFooter: boolean
   buttonLabel: string
   buttonHref: string | null
@@ -98,6 +118,10 @@ export type HomeSection =
       searchPlaceholder: string
       image: string | null
       slides: HeroSlide[]
+      slideTransition: HeroTransition
+      slideDuration: number
+      showSlideNav: boolean
+      showInMenu: boolean
       showTitle: boolean
       showLead: boolean
       showCta: boolean
@@ -208,7 +232,11 @@ export function defaultHomeSections(locale: Locale): HomeSection[] {
       ctaHref: '#nosotros',
       searchPlaceholder: t.searchPlaceholder,
       image: '/new-vision/hero.jpg',
-      slides: [{ image: '/new-vision/hero.jpg', text: '', textX: 'center', textY: 'center' }],
+      slides: [{ image: '/new-vision/hero.jpg', title: '', text: '', titleAlign: 'center', titleAlignY: 'bottom', titleSize: 'lg', titleColor: '', textAlign: 'center', textAlignY: 'bottom', textSize: 'md', textColor: '', cta: '', ctaHref: '', ctaAlign: 'center', ctaAlignY: 'bottom', ctaSize: 'md', ctaColor: '' }],
+      slideTransition: 'fade',
+      slideDuration: 6,
+      showSlideNav: true,
+      showInMenu: true,
       showTitle: true,
       showLead: true,
       showCta: true,
@@ -292,25 +320,56 @@ function heroCtaHref(locale: Locale, row: Record<string, unknown>) {
   return pageHref(locale, row.ctaPage) || '#nosotros'
 }
 
-function parseSlides(list: unknown, fallback: string | null): HeroSlide[] {
+function slideTransition(value: unknown): HeroTransition {
+  return typeof value === 'string' && (HERO_TRANSITIONS as readonly string[]).includes(value)
+    ? (value as HeroTransition)
+    : 'fade'
+}
+
+function slideSeconds(value: unknown) {
+  const n = typeof value === 'number' ? value : Number(value)
+  if (!Number.isFinite(n) || n < 1) return 6
+  return n
+}
+
+function parseSlides(list: unknown, locale: Locale): HeroSlide[] {
+  if (!Array.isArray(list) || list.length === 0) return []
   const out: HeroSlide[] = []
-  if (Array.isArray(list)) {
-    for (const item of list) {
-      if (!item || typeof item !== 'object') continue
-      const rec = item as Record<string, unknown>
-      const image = mediaUrl(rec.image)
-      if (!image) continue
-      out.push({
-        image,
-        text: pick(rec.text),
-        textX: align(rec.textX, ['left', 'center', 'right'], 'center') as HeroSlide['textX'],
-        textY: align(rec.textY, ['top', 'center', 'bottom'], 'center') as HeroSlide['textY'],
-      })
-    }
+  for (const item of list) {
+    if (!item || typeof item !== 'object') continue
+    const rec = item as Record<string, unknown>
+    if (flag(rec.visible) === false) continue
+    const showImage = flag(rec.showImage)
+    const showTitle = flag(rec.showTitle)
+    const showText = flag(rec.showText)
+    const image = showImage ? mediaUrl(rec.image) : null
+    const title = showTitle ? pick(rec.title) : ''
+    const text = showText ? pick(rec.text) : ''
+    const cta = flag(rec.showCta) ? pick(rec.cta) : ''
+    const ctaHref = pageHref(locale, rec.ctaPage) || ''
+    if (!showImage && !showTitle && !showText && !cta) continue
+    if (!image && !title && !text && !cta) continue
+    out.push({
+      image,
+      title,
+      text,
+      titleAlign: align(rec.titleAlign, ['left', 'center', 'right'], 'center') as HeroSlide['titleAlign'],
+      titleAlignY: align(rec.titleAlignY, ['top', 'center', 'bottom'], 'bottom') as HeroSlide['titleAlignY'],
+      titleSize: align(rec.titleSize, ['sm', 'md', 'lg', 'xl'], 'lg') as HeroSlide['titleSize'],
+      titleColor: typeof rec.titleColor === 'string' ? rec.titleColor : '',
+      textAlign: align(rec.textAlign, ['left', 'center', 'right', 'justify'], 'center') as HeroSlide['textAlign'],
+      textAlignY: align(rec.textAlignY, ['top', 'center', 'bottom'], 'bottom') as HeroSlide['textAlignY'],
+      textSize: align(rec.textSize, ['sm', 'md', 'lg', 'xl'], 'md') as HeroSlide['textSize'],
+      textColor: typeof rec.textColor === 'string' ? rec.textColor : '',
+      cta,
+      ctaHref,
+      ctaAlign: align(rec.ctaAlign, ['left', 'center', 'right'], 'center') as HeroSlide['ctaAlign'],
+      ctaAlignY: align(rec.ctaAlignY, ['top', 'center', 'bottom'], 'bottom') as HeroSlide['ctaAlignY'],
+      ctaSize: align(rec.ctaSize, ['sm', 'md', 'lg', 'xl'], 'md') as HeroSlide['ctaSize'],
+      ctaColor: typeof rec.ctaColor === 'string' ? rec.ctaColor : '',
+    })
   }
-  if (out.length) return out
-  if (fallback) return [{ image: fallback, text: '', textX: 'center', textY: 'center' }]
-  return [{ image: '/new-vision/hero.jpg', text: '', textX: 'center', textY: 'center' }]
+  return out
 }
 
 function parseAboutCards(list: unknown, fallback: string | null): AboutCard[] {
@@ -345,12 +404,15 @@ function parseCard(row: Record<string, unknown>, locale: Locale): ExtraCard | nu
     showImage: flag(row.showImage),
     imageAlign: align(row.imageAlign, ['left', 'center', 'right'], 'left') as ExtraCard['imageAlign'],
     imageAlignY: align(row.imageAlignY, ['top', 'center', 'bottom'], 'center') as ExtraCard['imageAlignY'],
+    imageShape: align(row.imageShape, ['square', 'oval', 'circle', 'portrait', 'landscape'], 'landscape') as ExtraCard['imageShape'],
     subtitle,
+    subtitleAlign: align(row.subtitleAlign, ['left', 'center', 'right'], 'left') as ExtraCard['subtitleAlign'],
     showSubtitle: flag(row.showSubtitle),
     text,
-    textAlign: align(row.textAlign, ['left', 'center', 'right'], 'left') as ExtraCard['textAlign'],
+    textAlign: align(row.textAlign, ['left', 'center', 'right', 'justify'], 'left') as ExtraCard['textAlign'],
     showText: flag(row.showText),
     footer,
+    footerAlign: align(row.footerAlign, ['left', 'center', 'right'], 'left') as ExtraCard['footerAlign'],
     showFooter: flag(row.showFooter),
     buttonLabel,
     buttonHref,
@@ -365,8 +427,10 @@ function parseBlock(
   used: Map<string, number>,
   locale: Locale,
 ): HomeSection | null {
-  if (flag(row.visible) === false) return null
   const type = typeof row.blockType === 'string' ? row.blockType : ''
+  if (type === 'hero' || type === 'extra') {
+    if (flag(row.showInMenu, type === 'hero') === false) return null
+  } else if (flag(row.visible) === false) return null
   const rawId = typeof row.id === 'string' ? row.id : `s-${index}`
   const base =
     type === 'hero'
@@ -388,7 +452,6 @@ function parseBlock(
     const showCta = flag(row.showCta)
     const showSearch = flag(row.showSearch)
     const showImage = flag(row.showImage)
-    if (!showTitle && !showLead && !showCta && !showSearch && !showImage) return null
     const image = mediaUrl(row.image)
     return {
       type: 'hero',
@@ -399,7 +462,11 @@ function parseBlock(
       ctaHref: heroCtaHref(locale, row),
       searchPlaceholder: pick(row.searchPlaceholder),
       image: image ?? '/new-vision/hero.jpg',
-      slides: parseSlides(row.slides, image),
+      slides: parseSlides(row.slides, locale),
+      slideTransition: slideTransition(row.slideTransition),
+      slideDuration: slideSeconds(row.slideDuration),
+      showSlideNav: flag(row.showSlideNav),
+      showInMenu: flag(row.showInMenu, true),
       showTitle,
       showLead,
       showCta,

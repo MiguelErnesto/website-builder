@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { LangSwitch } from '@/components/LangSwitch'
+import { HeroSearch } from '@/components/HeroSearch'
 import type { Locale } from '@/lib/i18n'
 import { getMessages } from '@/lib/i18n'
 import type { NavItem } from '@/lib/site-copy'
@@ -22,6 +23,8 @@ type HeaderProps = {
   ctaHref: string
   showNavCta: boolean
   showLangSwitch: boolean
+  showSearch: boolean
+  searchPlaceholder: string
 }
 
 export function Header({
@@ -37,6 +40,8 @@ export function Header({
   ctaHref,
   showNavCta,
   showLangSwitch,
+  showSearch,
+  searchPlaceholder,
 }: HeaderProps) {
   const t = getMessages(locale)
   const [open, setOpen] = useState(false)
@@ -78,6 +83,11 @@ export function Header({
             ) : null}
             {showLogoText ? <span className="flux-logo-text">{logoText || siteName}</span> : null}
           </Link>
+          {showSearch ? (
+            <div className="flux-header-search">
+              <HeroSearch locale={locale} placeholder={searchPlaceholder} icon />
+            </div>
+          ) : null}
           <ul className="flux-menu">
             {links.map((item) => (
               <li key={`${item.href}-${item.label}`}>

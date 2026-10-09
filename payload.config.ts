@@ -20,8 +20,18 @@ const dirname = path.dirname(filename)
 
 loadEnv({ path: path.resolve(dirname, '.env') })
 
+const origins = [
+  ...new Set([
+    process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+  ]),
+]
+
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  serverURL: '',
+  cors: origins,
+  csrf: origins,
   admin: {
     user: Users.slug,
     importMap: {

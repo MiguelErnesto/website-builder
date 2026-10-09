@@ -1,9 +1,7 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties } from 'react'
 
-import { FadeUp } from '@/components/FadeUp'
 import { FaqList } from '@/components/FaqList'
 import { FeaturedCarousel } from '@/components/FeaturedCarousel'
-import { HeroSearch } from '@/components/HeroSearch'
 import { HeroSlides } from '@/components/HeroSlides'
 import type { Locale } from '@/lib/i18n'
 import { getMessages } from '@/lib/i18n'
@@ -21,19 +19,6 @@ type HomeSectionsProps = {
   carouselItems: CarouselItem[]
   ctaHref: string
   heroEm: string
-}
-
-function emphasize(title: string, em: string): ReactNode {
-  if (!em) return title
-  const idx = title.indexOf(em)
-  if (idx < 0) return title
-  return (
-    <>
-      {title.slice(0, idx)}
-      <em>{em}</em>
-      {title.slice(idx + em.length)}
-    </>
-  )
 }
 
 function ExtraButton({
@@ -59,20 +44,26 @@ function ExtraCardView({ card, beside }: { card: ExtraCard; beside?: boolean }) 
   const held = (show: boolean) => (show ? '' : ' is-held')
   const image = card.image ? (
     // eslint-disable-next-line @next/next/no-img-element
-    <img className={held(card.showImage).trim() || undefined} src={card.image} alt="" />
+    <img className={`extra-card-img--${card.imageShape}${held(card.showImage)}`} src={card.image} alt="" />
+  ) : null
+  const subtitle = card.subtitle ? (
+    <h3 className={`extra-card-subtitle--${card.subtitleAlign}${held(card.showSubtitle)}`}>{card.subtitle}</h3>
   ) : null
   const text = card.text ? (
     <p className={`extra-card-text extra-card-text--${card.textAlign}${held(card.showText)}`}>{card.text}</p>
   ) : null
-  const footer = card.footer ? <p className={`extra-card-footer${held(card.showFooter)}`}>{card.footer}</p> : null
+  const footer = card.footer ? (
+    <p className={`extra-card-footer extra-card-footer--${card.footerAlign}${held(card.showFooter)}`}>{card.footer}</p>
+  ) : null
   const button =
     card.buttonLabel && card.buttonHref ? (
       <div className={`extra-card-btn extra-card-btn--${card.buttonAlign}${held(card.showButton)}`}>
         <ExtraButton show href={card.buttonHref} label={card.buttonLabel} />
       </div>
     ) : null
-  const copy = text || footer || button ? (
+  const copy = subtitle || text || footer || button ? (
     <div className="extra-card-copy">
+      {subtitle}
       {text}
       {footer}
       {button}
@@ -81,7 +72,6 @@ function ExtraCardView({ card, beside }: { card: ExtraCard; beside?: boolean }) 
   const side = Boolean(beside && image && copy)
   return (
     <li className={`extra-card extra-card--${card.imageAlign} extra-card--y-${card.imageAlignY}${side ? ' extra-card--beside' : ''}`}>
-      {card.subtitle ? <h3 className={held(card.showSubtitle).trim() || undefined}>{card.subtitle}</h3> : null}
       {side ? (
         <div className="extra-card-media">
           {image}
@@ -90,6 +80,7 @@ function ExtraCardView({ card, beside }: { card: ExtraCard; beside?: boolean }) 
       ) : (
         <>
           {image}
+          {subtitle}
           {text}
           {footer}
           {button}
@@ -99,60 +90,23 @@ function ExtraCardView({ card, beside }: { card: ExtraCard; beside?: boolean }) 
   )
 }
 
-export function HomeSections({ locale, sections, carouselItems, ctaHref, heroEm }: HomeSectionsProps) {
+export function HomeSections({ locale, sections, carouselItems, ctaHref }: HomeSectionsProps) {
   const t = getMessages(locale)
 
   return (
     <>
       {sections.map((section) => {
         if (section.type === 'hero') {
-          const showHero =
-            section.showImage ||
-            section.showTitle ||
-            section.showLead ||
-            section.showCta ||
-            section.showSearch
-          if (!showHero) return null
+          if (!section.slides.length) return null
           return (
-            <section
-              key={section.id}
-              id={section.id}
-              className={`hero${section.showImage ? '' : ' hero--plain'}`}
-              aria-labelledby={`${section.id}-titulo`}
-            >
-              {section.showImage ? <HeroSlides slides={section.slides} /> : null}
-              <div className="hero-copy">
-                {section.showTitle ? (
-                  <FadeUp>
-                    <h1 id={`${section.id}-titulo`} className="hero-title">
-                      {emphasize(section.title, heroEm)}
-                    </h1>
-                  </FadeUp>
-                ) : (
-                  <h1 id={`${section.id}-titulo`} className="sr-only">
-                    {section.title}
-                  </h1>
-                )}
-                {section.showLead || section.showCta || section.showSearch ? (
-                  <div className="hero-mid">
-                    <FadeUp>
-                      {section.showLead ? <p className="hero-desc">{section.lead}</p> : null}
-                      {section.showCta || section.showSearch ? (
-                        <div className="hero-actions">
-                          {section.showCta && section.cta ? (
-                            <a href={section.ctaHref} className="flux-btn flux-btn--xl">
-                              {section.cta}
-                            </a>
-                          ) : null}
-                          {section.showSearch ? (
-                            <HeroSearch locale={locale} placeholder={section.searchPlaceholder} />
-                          ) : null}
-                        </div>
-                      ) : null}
-                    </FadeUp>
-                  </div>
-                ) : null}
-              </div>
+            <section key={section.id} id={section.id} className="hero">
+              <HeroSlides
+                slides={section.slides}
+                transition={section.slideTransition}
+                duration={section.slideDuration}
+                locale={locale}
+                showNav={section.showSlideNav}
+              />
             </section>
           )
         }
